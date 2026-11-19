@@ -1,0 +1,13 @@
+# Never commit locally supplied workspace responses or diagnostics.
+*.response.json
+workspace-settings*.json
+*-workspace-settings*.json
+input*.json
+response*.json
+source*.json
+*-input.json
+local-inputs/
+
+# Python artifacts
+__pycache__/
+*.py[cod]

@@ -1,0 +1,937 @@
+{
+  "title": "Unofficial ChatGPT workspace settings response key/type catalogue",
+  "observed_on": "2026-11-19",
+  "source_endpoint": "GET https://chatgpt.com/backend-api/accounts/{account_id}/settings",
+  "scope_note": "One observed response only; no observed values are included. Null and empty collections do not establish hidden types.",
+  "path_convention": "JSONPath-like bracket notation; [] means an array item; * normalizes role-like object keys to prevent identifier disclosure.",
+  "entries": [
+    {
+      "path": "$",
+      "type": "object"
+    },
+    {
+      "path": "$[\"access_request\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"access_token_max_ttl\"]",
+      "type": "integer"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_gpt_6_2_astra\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_gpt_6_2_sol\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_library_sharing\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_library_workspace_link_sharing\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_team_automations\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_team_create\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_gpt_6_1_terra\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_gpt_6_1_terra\"][\"*\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_gpt_6_1_terra\"][\"role-workspace-member\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_library_sharing\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_library_sharing\"][\"role-workspace-member\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_team_create\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_team_create\"][\"*\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_team_create\"][\"role-workspace-member\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"can_edit_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"revision\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"saved_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"show_sync_toggle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"can_edit_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"revision\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"saved_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"show_sync_toggle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"can_edit_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"revision\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"saved_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"show_sync_toggle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"can_edit_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"revision\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"saved_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"show_sync_toggle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"can_edit_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"revision\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"saved_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"show_sync_toggle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"can_edit_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"revision\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"saved_sync\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"show_sync_toggle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_work_local_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"admin_work_mode_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"allow_external_domain_invites\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"allow_third_party_gpts\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"allowed_custom_actions_domains\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"allowed_web_search_domains\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"auto_accept_requests\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"auto_approve_seat_upgrades\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"auto_join_pending_requests_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_astra\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_astra\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_sol\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_sol\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_sharing\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_sharing\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_workspace_link_sharing\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_workspace_link_sharing\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_automations\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_automations\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_create\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_create\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"agent_mode\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"allow_computer_history\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"app_pairing\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"aura\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"aura_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"auto_scim_groups_to_teams\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"basispoints_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"basispoints_powerpoint_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"browsing\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"canvas\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"canvas_code_execution\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"canvas_code_network_access\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"client_application_apple\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"client_application_apple_mdm_required\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"code_interpreter\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_admin\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_agent_network_access\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_code_attribution_analytics\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_composer_predictions\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_device_code_auth\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_git_attribution\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_remote_control\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_security\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_security_admin\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_slack_posting\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"codex_usage_leaderboard\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_confluence\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_gdrive\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_java\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_notion\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_o365_business\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_o365_personal\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"context_connector_slack\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"dalle\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"deep_research\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"developer_mode\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"enable_conversation_classifier\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"enable_free_trial_seats\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"enable_message_feedback\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"enable_plugins\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"enable_value_survey_campaign\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"enhanced_citations\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"file_library_auto_reference\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"file_library_auto_reference_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"flora_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"gpt51_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"hermes\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"hermes_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"hippo_in_chat_allowed\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"hive\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"hive_knowledge_retrieval\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"include_user_identifier_in_survey_download\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"legacy_models\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"library_sharing_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"library_sharing_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"library_sharing_management\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"library_workspace_link_sharing\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"m3m_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"m3m_workspace_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"orbit_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"personal_access_tokens\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"plugins\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"project_connector_scopes\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"project_group_chats\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"project_group_chats_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"project_sharing\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"project_sharing_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"salute\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"salute_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"sites\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"sites_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"skills\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"skills_ga_opt_out\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"sunshine\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"task_suggestions_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"training_allowed\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"unified_container_internet_egress\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"video_screen_sharing\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"wham_access\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"wham_local_access\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"windows_computer_use\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_chat_history_limit\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_fedramp_banner\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_gpt_apps\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_gpt_custom_actions\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_plugin_publishing\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_policy\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings\"][\"workspace_policy_work_home\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_gpt_6_1_terra\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_gpt_6_1_terra\"][\"*\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_gpt_6_1_terra\"][\"role-workspace-member\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_library_sharing\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_library_sharing\"][\"role-workspace-member\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_team_create\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_team_create\"][\"*\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_team_create\"][\"role-workspace-member\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"library_sharing_admin_configuration\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"library_sharing_admin_configuration\"][\"configured\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"library_sharing_control_mode\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"beta_settings_dict\"][\"library_sharing_control_mode\"][\"mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"beta_settings_str\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"composer_predictions_launched\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"conversation_ttl\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"custom_permission_inheritance_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"default_seat_type\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"desktop_app_beta_policy\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"disable_account_switching\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"enable_account_switching\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"file_library_auto_reference_admin_control_retired\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"library_sharing_control_mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"member_profile_activity_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"member_profiles_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"member_profiles_sharing\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"model_permission_preferences\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"model_permission_preferences\"][\"ultra-fast-mode\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"orbit_rollout_eligible\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"orbit_uses_workspace_setting\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"owner_setup_join_preference_confirmed\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"permissions\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"permissions\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"plugin_incentive_campaigns\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"plugin_incentives_ui_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"public_display_name\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"role_summaries\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"role_summaries\"][]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"assignment_sources\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"assignment_sources\"][]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"assignment_sources\"][][\"principal_id\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"assignment_sources\"][][\"principal_type\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"id\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"metadata\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"name\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"permissions\"]",
+      "type": "array"
+    },
+    {
+      "path": "$[\"role_summaries\"][][\"permissions\"][]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"search_restrictions\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"seat_type_credit_limits\"]",
+      "type": "null"
+    },
+    {
+      "path": "$[\"settings\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"share_settings\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"share_settings\"][\"chat_share_setting\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"share_settings\"][\"gpt_share_setting\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"support_workspace_discovery\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"unified_workspace_name\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"usage_limit_increase_request\"]",
+      "type": "object"
+    },
+    {
+      "path": "$[\"usage_limit_increase_request\"][\"instructions\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"usage_limit_increase_request\"][\"kind\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"usage_limit_increase_request\"][\"request_url\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"use_workspace_name_for_discovery\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"workspace_banner_available\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"workspace_discoverable\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"workspace_id\"]",
+      "type": "string"
+    },
+    {
+      "path": "$[\"workspace_referrals_enabled\"]",
+      "type": "boolean"
+    },
+    {
+      "path": "$[\"workspace_referrals_enabled_visible\"]",
+      "type": "boolean"
+    }
+  ]
+}

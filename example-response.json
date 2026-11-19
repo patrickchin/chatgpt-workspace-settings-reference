@@ -1,0 +1,271 @@
+{
+  "notice": "ILLUSTRATIVE EXAMPLE ONLY. No observed values are reproduced. Null and empty collections use placeholder strings; some example values therefore do not match the catalogue type. Role-ID map keys are redacted.",
+  "response": {
+    "workspace_id": "<illustrative>",
+    "settings": "<illustrative empty-object placeholder>",
+    "beta_settings": {
+      "codex_composer_predictions": true,
+      "app_pairing": true,
+      "canvas": true,
+      "canvas_code_execution": true,
+      "canvas_code_network_access": true,
+      "code_interpreter": true,
+      "browsing": true,
+      "dalle": true,
+      "workspace_gpt_custom_actions": true,
+      "workspace_gpt_apps": true,
+      "sunshine": true,
+      "training_allowed": true,
+      "context_connector_confluence": true,
+      "context_connector_gdrive": true,
+      "context_connector_java": true,
+      "context_connector_notion": true,
+      "context_connector_o365_personal": true,
+      "context_connector_o365_business": true,
+      "context_connector_slack": true,
+      "client_application_apple": true,
+      "client_application_apple_mdm_required": true,
+      "video_screen_sharing": true,
+      "deep_research": true,
+      "hive": true,
+      "hive_knowledge_retrieval": true,
+      "file_library_auto_reference": true,
+      "file_library_auto_reference_ga_opt_out": true,
+      "library_sharing_enabled": true,
+      "library_sharing_management": true,
+      "library_workspace_link_sharing": true,
+      "library_sharing_ga_opt_out": true,
+      "m3m_ga_opt_out": true,
+      "wham_access": true,
+      "sites": true,
+      "sites_ga_opt_out": true,
+      "workspace_plugin_publishing": true,
+      "wham_local_access": true,
+      "codex_admin": true,
+      "codex_agent_network_access": true,
+      "codex_device_code_auth": true,
+      "codex_remote_control": true,
+      "windows_computer_use": true,
+      "codex_slack_posting": true,
+      "codex_usage_leaderboard": true,
+      "codex_git_attribution": true,
+      "codex_code_attribution_analytics": true,
+      "codex_security": true,
+      "codex_security_admin": true,
+      "developer_mode": true,
+      "agent_mode": true,
+      "aura": true,
+      "hippo_in_chat_allowed": true,
+      "legacy_models": true,
+      "workspace_policy": true,
+      "workspace_fedramp_banner": true,
+      "project_sharing": true,
+      "project_group_chats": true,
+      "project_connector_scopes": true,
+      "skills": true,
+      "salute": true,
+      "hermes": true,
+      "salute_ga_opt_out": true,
+      "hermes_ga_opt_out": true,
+      "project_sharing_ga_opt_out": true,
+      "project_group_chats_ga_opt_out": true,
+      "skills_ga_opt_out": true,
+      "flora_ga_opt_out": true,
+      "basispoints_ga_opt_out": true,
+      "basispoints_powerpoint_ga_opt_out": true,
+      "aura_ga_opt_out": true,
+      "enhanced_citations": true,
+      "gpt51_ga_opt_out": true,
+      "enable_conversation_classifier": true,
+      "enable_value_survey_campaign": true,
+      "include_user_identifier_in_survey_download": true,
+      "workspace_chat_history_limit": true,
+      "unified_container_internet_egress": true,
+      "enable_free_trial_seats": true,
+      "auto_scim_groups_to_teams": true,
+      "orbit_enabled": true,
+      "enable_message_feedback": true,
+      "task_suggestions_enabled": true,
+      "plugins": true,
+      "personal_access_tokens": true,
+      "allow_computer_history": true,
+      "m3m_workspace_enabled": true,
+      "enable_plugins": true,
+      "workspace_policy_work_home": true
+    },
+    "beta_settings_str": "<illustrative empty-object placeholder>",
+    "desktop_app_beta_policy": "<illustrative>",
+    "beta_settings_dict": {
+      "library_sharing_control_mode": {
+        "mode": "<illustrative>"
+      },
+      "admin_preview_library_sharing": {
+        "role-workspace-member": "<illustrative>"
+      },
+      "admin_preview_team_create": {
+        "role-workspace-member": "<illustrative>",
+        "*": "<illustrative>"
+      },
+      "library_sharing_admin_configuration": {
+        "configured": "<illustrative>"
+      },
+      "admin_preview_gpt_6_1_terra": {
+        "role-workspace-member": "<illustrative>",
+        "*": "<illustrative>"
+      }
+    },
+    "library_sharing_control_mode": "<illustrative>",
+    "file_library_auto_reference_admin_control_retired": true,
+    "composer_predictions_launched": true,
+    "available_admin_preview_features": {
+      "admin_preview_gpt_6_2_astra": [
+        "<illustrative>"
+      ],
+      "admin_preview_gpt_6_2_sol": [
+        "<illustrative>"
+      ],
+      "admin_preview_library_sharing": [
+        "<illustrative>"
+      ],
+      "admin_preview_library_workspace_link_sharing": [
+        "<illustrative>"
+      ],
+      "admin_preview_team_create": [
+        "<illustrative>"
+      ],
+      "admin_preview_team_automations": [
+        "<illustrative>"
+      ]
+    },
+    "model_permission_preferences": {
+      "ultra-fast-mode": "<illustrative>"
+    },
+    "admin_preview_launch_settings": {
+      "admin_preview_gpt_6_1_terra": {
+        "role-workspace-member": "<illustrative>",
+        "*": "<illustrative>"
+      },
+      "admin_preview_library_sharing": {
+        "role-workspace-member": "<illustrative>"
+      },
+      "admin_preview_team_create": {
+        "role-workspace-member": "<illustrative>",
+        "*": "<illustrative>"
+      }
+    },
+    "admin_preview_launch_defaults": {
+      "admin_preview_gpt_6_2_astra": "<illustrative>",
+      "admin_preview_gpt_6_2_sol": "<illustrative>",
+      "admin_preview_library_sharing": "<illustrative>",
+      "admin_preview_library_workspace_link_sharing": "<illustrative>",
+      "admin_preview_team_create": "<illustrative>",
+      "admin_preview_team_automations": "<illustrative>"
+    },
+    "admin_preview_matching": {
+      "admin_preview_library_sharing": {
+        "mode": "<illustrative>",
+        "saved_sync": true,
+        "show_sync_toggle": true,
+        "can_edit_sync": true,
+        "revision": "<illustrative>"
+      },
+      "admin_preview_library_workspace_link_sharing": {
+        "mode": "<illustrative>",
+        "saved_sync": true,
+        "show_sync_toggle": true,
+        "can_edit_sync": true,
+        "revision": "<illustrative>"
+      },
+      "admin_preview_gpt_6_2_astra": {
+        "mode": "<illustrative>",
+        "saved_sync": true,
+        "show_sync_toggle": true,
+        "can_edit_sync": true,
+        "revision": "<illustrative>"
+      },
+      "admin_preview_team_automations": {
+        "mode": "<illustrative>",
+        "saved_sync": true,
+        "show_sync_toggle": true,
+        "can_edit_sync": true,
+        "revision": "<illustrative>"
+      },
+      "admin_preview_gpt_6_2_sol": {
+        "mode": "<illustrative>",
+        "saved_sync": true,
+        "show_sync_toggle": true,
+        "can_edit_sync": true,
+        "revision": "<illustrative>"
+      },
+      "admin_preview_team_create": {
+        "mode": "<illustrative>",
+        "saved_sync": true,
+        "show_sync_toggle": true,
+        "can_edit_sync": true,
+        "revision": "<illustrative>"
+      }
+    },
+    "conversation_ttl": "<illustrative null placeholder>",
+    "access_token_max_ttl": 1,
+    "share_settings": {
+      "gpt_share_setting": "<illustrative>",
+      "chat_share_setting": "<illustrative>"
+    },
+    "allow_third_party_gpts": "<illustrative>",
+    "allowed_custom_actions_domains": "<illustrative null placeholder>",
+    "allowed_web_search_domains": "<illustrative null placeholder>",
+    "seat_type_credit_limits": "<illustrative null placeholder>",
+    "usage_limit_increase_request": {
+      "kind": "<illustrative>",
+      "instructions": "<illustrative>",
+      "request_url": "<illustrative>"
+    },
+    "access_request": "<illustrative null placeholder>",
+    "default_seat_type": "<illustrative null placeholder>",
+    "permissions": [
+      "<illustrative>"
+    ],
+    "admin_work_mode_enabled": true,
+    "admin_work_local_enabled": true,
+    "orbit_uses_workspace_setting": true,
+    "orbit_rollout_eligible": true,
+    "custom_permission_inheritance_enabled": true,
+    "allow_external_domain_invites": true,
+    "workspace_referrals_enabled": true,
+    "workspace_referrals_enabled_visible": true,
+    "plugin_incentives_ui_enabled": true,
+    "plugin_incentive_campaigns": "<illustrative empty-array placeholder>",
+    "workspace_banner_available": true,
+    "member_profiles_enabled": true,
+    "member_profile_activity_enabled": true,
+    "member_profiles_sharing": "<illustrative>",
+    "search_restrictions": "<illustrative>",
+    "workspace_discoverable": true,
+    "public_display_name": "<illustrative null placeholder>",
+    "use_workspace_name_for_discovery": true,
+    "unified_workspace_name": true,
+    "support_workspace_discovery": true,
+    "auto_accept_requests": true,
+    "owner_setup_join_preference_confirmed": true,
+    "auto_join_pending_requests_enabled": true,
+    "auto_approve_seat_upgrades": true,
+    "disable_account_switching": true,
+    "enable_account_switching": true,
+    "role_summaries": [
+      {
+        "id": "<illustrative>",
+        "name": "<illustrative>",
+        "permissions": [
+          "<illustrative>"
+        ],
+        "metadata": "<illustrative null placeholder>",
+        "assignment_sources": [
+          {
+            "principal_id": "<illustrative>",
+            "principal_type": "<illustrative>"
+          }
+        ]
+      }
+    ]
+  }
+}
