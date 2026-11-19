@@ -1,5 +1,5 @@
 {
-  "notice": "ILLUSTRATIVE EXAMPLE ONLY. No observed values are reproduced. Null and empty collections use placeholder strings; some example values therefore do not match the catalogue type. Role-ID map keys are redacted.",
+  "notice": "ILLUSTRATIVE ONLY. Scalar values are synthetic and may coincidentally match a source value. Nulls and empty collections use explicit placeholder strings; consult catalogue.json for observed types. Dynamic role keys and duplicate item shapes are collapsed.",
   "response": {
     "workspace_id": "<illustrative>",
     "settings": "<illustrative empty-object placeholder>",
@@ -100,17 +100,15 @@
         "mode": "<illustrative>"
       },
       "admin_preview_library_sharing": {
-        "role-workspace-member": "<illustrative>"
+        "*": "<illustrative>"
       },
       "admin_preview_team_create": {
-        "role-workspace-member": "<illustrative>",
         "*": "<illustrative>"
       },
       "library_sharing_admin_configuration": {
         "configured": "<illustrative>"
       },
       "admin_preview_gpt_6_1_terra": {
-        "role-workspace-member": "<illustrative>",
         "*": "<illustrative>"
       }
     },
@@ -142,14 +140,12 @@
     },
     "admin_preview_launch_settings": {
       "admin_preview_gpt_6_1_terra": {
-        "role-workspace-member": "<illustrative>",
         "*": "<illustrative>"
       },
       "admin_preview_library_sharing": {
-        "role-workspace-member": "<illustrative>"
+        "*": "<illustrative>"
       },
       "admin_preview_team_create": {
-        "role-workspace-member": "<illustrative>",
         "*": "<illustrative>"
       }
     },

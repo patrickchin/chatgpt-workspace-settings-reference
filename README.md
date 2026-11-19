@@ -11,27 +11,30 @@ It is an unofficial, point-in-time observation. It is not an OpenAI API contract
 ## What is included
 
 - [Browsable key reference](REFERENCE.md), grouped by top-level response section.
-- [Machine-readable path and type catalogue](catalogue.json).
+- [Machine-readable catalogue](catalogue.json) with observed paths, types, curated meanings, and evidence labels.
 - [Illustrative sanitized response](example-response.json). It replaces every observed value with examples or explicit null/empty-collection placeholder strings; consult the catalogue for observed JSON types.
 - [`tools/generate_catalogue.py`](tools/generate_catalogue.py), a standard-library Python script for regenerating the catalogue, reference, and illustrative example from a local response.
+- [`tools/field_notes.json`](tools/field_notes.json), the reviewed registry of public field paths, explanations, evidence, and dynamic role-map locations.
 
 ## Reading the reference
 
-Paths use a JSONPath-like form: `$["section"]["field"]`; `[]` means an item of an array. Object properties whose names match the observed workspace role-ID form are normalized to `*` so the generated public material cannot disclose role IDs. This normalization applies to paths and example data; ordinary field names are preserved.
+Paths use a JSONPath-like form: `$["section"]["field"]`; `[]` means an observed array item shape. Every property name inside a reviewed role-policy map is normalized to `*`, including built-in role keys. This protects identifiers regardless of their format. Multiple role keys and repeated array items collapse to distinct path/type pairs. Ordinary field names must appear at their exact reviewed location in the registry; an unreviewed path causes generation to stop before any output is written.
 
 Types describe the values present in this one saved response. `null` means only that the observed value was null; it does not reveal the intended type. Likewise, an empty object or array shows only that the collection had no entries in this response. Array item paths describe the item shape seen when items were present.
 
 The meaning label is one of:
 
-- **Confirmed** — the broad meaning is supported by the linked official documentation; this does not confirm undocumented backend semantics.
-- **Inferred from name** — a plausible reading of the identifier, not a verified product behavior.
+- **Confirmed** — directly observed structure or an explicitly attributed client observation supplied by the source author. The Windows client check is an author report, not an independently reproduced result; client version and code evidence are not included.
+- **Inferred from name** — a curated interpretation of the field in its parent context. Official product documentation can support the surrounding concept without verifying this internal key or its enforcement.
 - **Unknown** — the response name and available documentation do not establish what the field does.
+
+Public documentation links are labeled **product context; key mapping unverified**. Generic feature or RBAC documentation never promotes an internal field mapping to Confirmed. Source records in the catalogue distinguish `product_context`, `local_observation`, and `author_report` evidence. Opaque feature names remain unidentified. No original third-party source directly establishing these mappings was located during this review; no secondhand speculation is treated as confirmation. Sources were reviewed on November 19, 2026 and may change later.
 
 A `false` value in a settings response does not prove that an administrator deliberately disabled a feature. Values can reflect defaults, eligibility, rollout state, inheritance, or other server logic. This reference intentionally does not publish any observed values.
 
 ## Scope and privacy
 
-The catalogue contains paths and JSON value types only. The example uses clearly illustrative values and explicit placeholder strings for observed nulls and empty collections, and substitutes dynamic role keys. Its placeholder values may not have the observed JSON type; use `catalogue.json` for types. It excludes the source response's workspace/account identifiers, role IDs and membership data, names, emails, domains, tokens, organization-specific policy values, and actual settings values. The source file must remain outside this repository. Local response files are ignored by `.gitignore`.
+The catalogue contains reviewed field paths, types, explanations, and evidence, with no source scalar values. The example replaces strings with illustrative placeholders, numbers with synthetic numbers, booleans with a fixed synthetic value, and nulls/empty collections with explicit placeholder strings. Synthetic values can coincidentally match a source value; they do not report the workspace's actual selections. Placeholder strings may not have the observed JSON type; use `catalogue.json` for types. Actual workspace/account identifiers, role IDs, membership lists, names, emails, domains, tokens, organization instructions/URLs, policy selections, and revision markers are omitted. The source file must remain outside this repository; the CLI enforces this. Common local input filenames are also ignored by `.gitignore`.
 
 Do not commit a raw response, even if it appears to contain only settings. Before publishing regenerated files, review the diff for identifiers and organization-specific data.
 
@@ -45,7 +48,7 @@ The observed response included `windows_computer_use`. The installed client on W
 
 The provenance is the locally saved JSON response and its recorded observation date, November 19, 2026. The endpoint is an internal web backend endpoint and is not presented here as a supported public API. The observation is not a claim about defaults or admin intent. Null and empty values do not establish hidden schema types, and the absence of a key does not show that the setting is unsupported.
 
-The reference links only to public official documentation that provides useful context for workspace settings, role-based access control, and client configuration. Those documents do not define this response's complete schema. Meaning labels are deliberately conservative.
+The reference links to official documentation for workspace controls and individual product features. Those documents do not define this response schema. Duration units, enum exhaustiveness, flag precedence, and effective permissions remain unverified unless explicitly stated otherwise.
 
 ## References
 
@@ -62,6 +65,18 @@ Keep the input outside the repository, then run:
 python tools/generate_catalogue.py "C:\path\to\workspace-settings.json" --observed-on 2026-11-19
 ```
 
-The script overwrites `catalogue.json`, `REFERENCE.md`, and `example-response.json`. It does not upload or transmit the input. Inspect all generated diffs before committing.
+Requires Python 3.10 or later; no third-party packages. The observation date is required explicitly to avoid accidentally dating a new response as the original snapshot.
+
+The script overwrites `catalogue.json`, `REFERENCE.md`, and `example-response.json` only after validating every path and constructing all three artifacts. It rejects duplicate object keys and nonstandard JSON numeric constants. It does not upload or transmit the input. Unexpected paths are rejected without printing their potentially sensitive names. Dynamic role keys are never copied, even if they contain emails, domains, UUIDs, or a new identifier format.
+
+For a new response shape, review new field names privately, then add only public schema names and curated notes to `tools/field_notes.json`. Do not add private dictionary keys to that registry. New dynamic maps need an explicit parent path and a wildcard child entry. A dynamic map with incompatible example shapes is rejected for private review. Review diffs before committing.
+
+The catalogue examines every array item. The example preserves distinct sanitized item shapes but collapses duplicates and role-map members; it does not preserve membership counts or associations.
+
+Run the sanitizer regression checks with:
+
+```powershell
+python -m unittest discover -s tests -v
+```
 
 This repository is an independent community reference and is not affiliated with or endorsed by OpenAI.

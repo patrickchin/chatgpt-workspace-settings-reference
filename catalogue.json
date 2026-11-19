@@ -1,937 +1,2239 @@
 {
-  "title": "Unofficial ChatGPT workspace settings response key/type catalogue",
+  "title": "Unofficial ChatGPT workspace settings response catalogue",
   "observed_on": "2026-11-19",
   "source_endpoint": "GET https://chatgpt.com/backend-api/accounts/{account_id}/settings",
-  "scope_note": "One observed response only; no observed values are included. Null and empty collections do not establish hidden types.",
-  "path_convention": "JSONPath-like bracket notation; [] means an array item; * normalizes role-like object keys to prevent identifier disclosure.",
+  "scope_note": "One response only; no observed values. Null and empty collections do not establish hidden types.",
+  "path_convention": "JSONPath-like brackets; [] aggregates observed array item shapes; * redacts every key in reviewed dynamic role maps.",
   "entries": [
     {
       "path": "$",
-      "type": "object"
+      "type": "object",
+      "meaning": "Root object of the locally supplied JSON response.",
+      "status": "Confirmed",
+      "sources": [
+        {
+          "label": "Structure observed in the supplied JSON; raw data withheld.",
+          "scope": "local_observation"
+        }
+      ]
     },
     {
       "path": "$[\"access_request\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Access-request information or configuration; the observed null does not reveal its structure.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"access_token_max_ttl\"]",
-      "type": "integer"
+      "type": "integer",
+      "meaning": "Maximum lifetime of an access token. Units, token class, and enforcement are not verified; do not assume seconds.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Per-feature starting states for an admin preview; these response values are not product defaults.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_gpt_6_2_astra\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Starting preview policy state for the preview identified as gpt_6_2_astra; this name does not establish public model availability. This is a response value, not a universal product default.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_gpt_6_2_sol\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Starting preview policy state for the preview identified as gpt_6_2_sol; this name does not establish public model availability. This is a response value, not a universal product default.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_library_sharing\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Starting preview policy state for Library sharing. This is a response value, not a universal product default.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_library_workspace_link_sharing\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Starting preview policy state for Library links scoped to the workspace. This is a response value, not a universal product default.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_team_automations\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Starting preview policy state for team automations. This is a response value, not a universal product default.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_defaults\"][\"admin_preview_team_create\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Starting preview policy state for team creation. This is a response value, not a universal product default.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_settings\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Per-feature role-policy maps for an admin preview; inheritance and precedence are not verified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_gpt_6_1_terra\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Role-policy map for the preview identified as gpt_6_1_terra; this name does not establish public model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_gpt_6_1_terra\"][\"*\"]",
-      "type": "string"
-    },
-    {
-      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_gpt_6_1_terra\"][\"role-workspace-member\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy state under a redacted role-map key. All role identifiers, including built-in role keys, collapse to this path; assignment and policy values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_library_sharing\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Role-policy map for Library sharing.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
-      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_library_sharing\"][\"role-workspace-member\"]",
-      "type": "string"
+      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_library_sharing\"][\"*\"]",
+      "type": "string",
+      "meaning": "Policy state under a redacted role-map key. All role identifiers, including built-in role keys, collapse to this path; assignment and policy values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_team_create\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Role-policy map for team creation.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_team_create\"][\"*\"]",
-      "type": "string"
-    },
-    {
-      "path": "$[\"admin_preview_launch_settings\"][\"admin_preview_team_create\"][\"role-workspace-member\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy state under a redacted role-map key. All role identifiers, including built-in role keys, collapse to this path; assignment and policy values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Per-preview synchronization or matching metadata; the source of matching and algorithm are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Matching or synchronization metadata for the preview identified as gpt_6_2_astra; this name does not establish public model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"can_edit_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether editing the preview synchronization selection is allowed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Matching/synchronization strategy for this preview; the complete strategy enum is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"revision\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Opaque revision marker for preview-matching state; algorithm and concurrency semantics are unverified. Actual marker omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"saved_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Saved synchronization selection for this preview; a saved selection may differ from enforced behavior.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_astra\"][\"show_sync_toggle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether the client should show a synchronization toggle for this preview.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Matching or synchronization metadata for the preview identified as gpt_6_2_sol; this name does not establish public model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"can_edit_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether editing the preview synchronization selection is allowed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Matching/synchronization strategy for this preview; the complete strategy enum is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"revision\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Opaque revision marker for preview-matching state; algorithm and concurrency semantics are unverified. Actual marker omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"saved_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Saved synchronization selection for this preview; a saved selection may differ from enforced behavior.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_gpt_6_2_sol\"][\"show_sync_toggle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether the client should show a synchronization toggle for this preview.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Matching or synchronization metadata for Library sharing.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"can_edit_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether editing the preview synchronization selection is allowed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Matching/synchronization strategy for this preview; the complete strategy enum is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"revision\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Opaque revision marker for preview-matching state; algorithm and concurrency semantics are unverified. Actual marker omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"saved_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Saved synchronization selection for this preview; a saved selection may differ from enforced behavior.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_sharing\"][\"show_sync_toggle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether the client should show a synchronization toggle for this preview.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Matching or synchronization metadata for Library links scoped to the workspace.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"can_edit_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether editing the preview synchronization selection is allowed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Matching/synchronization strategy for this preview; the complete strategy enum is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"revision\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Opaque revision marker for preview-matching state; algorithm and concurrency semantics are unverified. Actual marker omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"saved_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Saved synchronization selection for this preview; a saved selection may differ from enforced behavior.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_library_workspace_link_sharing\"][\"show_sync_toggle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether the client should show a synchronization toggle for this preview.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Matching or synchronization metadata for team automations.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"can_edit_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether editing the preview synchronization selection is allowed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Matching/synchronization strategy for this preview; the complete strategy enum is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"revision\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Opaque revision marker for preview-matching state; algorithm and concurrency semantics are unverified. Actual marker omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"saved_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Saved synchronization selection for this preview; a saved selection may differ from enforced behavior.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_automations\"][\"show_sync_toggle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether the client should show a synchronization toggle for this preview.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Matching or synchronization metadata for team creation.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"can_edit_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether editing the preview synchronization selection is allowed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Matching/synchronization strategy for this preview; the complete strategy enum is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"revision\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Opaque revision marker for preview-matching state; algorithm and concurrency semantics are unverified. Actual marker omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"saved_sync\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Saved synchronization selection for this preview; a saved selection may differ from enforced behavior.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_preview_matching\"][\"admin_preview_team_create\"][\"show_sync_toggle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether the client should show a synchronization toggle for this preview.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"admin_work_local_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of local Work functionality; do not equate this field with local Codex access without further evidence.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Work and Codex access",
+          "url": "https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"admin_work_mode_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Administrative gate for Work; whether it specifically gates cloud Work is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Work and Codex access",
+          "url": "https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"allow_external_domain_invites\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether invitations to addresses outside workspace-associated domains are allowed.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"allow_third_party_gpts\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy selecting access to GPTs created outside the workspace; the complete accepted value set is unknown.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI GPT access controls",
+          "url": "https://help.openai.com/en/articles/8555535-managing-gpt-access-in-enterprise-and-edu-workspaces",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"allowed_custom_actions_domains\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Domain restriction or allowlist for GPT custom actions. Null does not establish unrestricted access or list type.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI GPT access controls",
+          "url": "https://help.openai.com/en/articles/8555535-managing-gpt-access-in-enterprise-and-edu-workspaces",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"allowed_web_search_domains\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Domain restriction or allowlist for web search. Null does not establish unrestricted access or list type.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI web search",
+          "url": "https://help.openai.com/en/articles/9237897-searching-the-web-with-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"auto_accept_requests\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Automatically accepting requests to join a discoverable workspace.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"auto_approve_seat_upgrades\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Automatically approving requested seat upgrades; billing and eligibility rules remain unspecified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"auto_join_pending_requests_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Automatically joining or processing members with pending requests; distinct from the auto_accept_requests field.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"available_admin_preview_features\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Map of preview feature identifiers to arrays of permission identifiers associated with each preview.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_astra\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with the preview identified as gpt_6_2_astra; this name does not establish public model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_astra\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with the preview identified as gpt_6_2_astra; this name does not establish public model availability; actual permission values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_sol\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with the preview identified as gpt_6_2_sol; this name does not establish public model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_gpt_6_2_sol\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with the preview identified as gpt_6_2_sol; this name does not establish public model availability; actual permission values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_sharing\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with Library sharing.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_sharing\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with Library sharing; actual permission values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_workspace_link_sharing\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with Library links scoped to the workspace.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_library_workspace_link_sharing\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with Library links scoped to the workspace; actual permission values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_automations\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with team automations.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_automations\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with team automations; actual permission values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_create\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with team creation.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"available_admin_preview_features\"][\"admin_preview_team_create\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with team creation; actual permission values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Container of feature availability, policy, and rollout flags. The beta name does not prove that each feature is currently experimental.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"agent_mode\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of ChatGPT agent mode; other restrictions may still prevent use.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Lockdown Mode",
+          "url": "https://help.openai.com/en/articles/20001061-lockdown-mode",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"allow_computer_history\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Permission to use a Computer History capability; it is distinct from the Windows Computer Use flag.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"app_pairing\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Pairing an app or client with another surface or device; what is paired is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"aura\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opaque feature identifier; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"aura_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of aura (unidentified feature); current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"auto_scim_groups_to_teams\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Automatic mapping or conversion of SCIM-provisioned groups into teams; exact synchronization behavior is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"basispoints_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of basispoints (unidentified feature); current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"basispoints_powerpoint_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of the PowerPoint variant of basispoints (unidentified feature); current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"browsing\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access to web browsing or search; the name alone does not establish which current web-search experience it gates.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI web search",
+          "url": "https://help.openai.com/en/articles/9237897-searching-the-web-with-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"canvas\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of Canvas, the writing and coding surface exposed through ChatGPT workspace controls.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"canvas_code_execution\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Running code within Canvas; distinct from merely opening or editing a Canvas.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Canvas launch and Python execution (December 10, 2024)",
+          "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"canvas_code_network_access\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Allowing Canvas-generated code to make network requests; separate security restrictions can still apply.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Lockdown Mode",
+          "url": "https://help.openai.com/en/articles/20001061-lockdown-mode",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"client_application_apple\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Apple-client availability policy; supported platforms and enforcement points are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"client_application_apple_mdm_required\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Requirement for mobile device management (MDM) on an Apple client; this does not identify any Mac Computer Use gate.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"code_interpreter\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access to code-backed data analysis, commonly associated with the Code Interpreter capability; exact legacy-key mapping is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI data analysis",
+          "url": "https://help.openai.com/en/articles/8437071-advanced-data-",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"codex_admin\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of Codex administrative functions; does not prove the caller holds an admin role.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_agent_network_access\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Permission for a Codex agent to access the network; scope and local sandbox interaction are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_code_attribution_analytics\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Analytics about attribution of code to Codex; collection details are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_composer_predictions\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Predicted text or suggestions in the Codex prompt composer; trigger and implementation are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_device_code_auth\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of device-code authentication for Codex clients; not a credential value.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_git_attribution\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Git attribution behavior associated with Codex-generated changes; format and enforcement are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_remote_control\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access to remote-control functionality associated with Codex; controlled surfaces are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_security\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of a Codex security-related feature; exact security product mapping is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_security_admin\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Administrative access for a Codex security-related feature; not proof of an assigned admin role.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_slack_posting\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Ability for Codex-related workflows to post in Slack; required app authorization is not established here.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"codex_usage_leaderboard\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Visibility or availability of a Codex usage leaderboard.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_confluence\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector availability associated with Confluence content.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_gdrive\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector availability associated with Google Drive content.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_java\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector identifier containing java; the provider or feature mapping is unknown.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_notion\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector availability associated with Notion content.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_o365_business\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector availability associated with business Microsoft 365 accounts.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_o365_personal\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector availability associated with personal Microsoft 365 accounts.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"context_connector_slack\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector availability associated with Slack content.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"dalle\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Image-generation-related flag named after DALL-E. It does not establish that the retired DALL-E GPT is available or identify the current image model.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Images in ChatGPT",
+          "url": "https://help.openai.com/en/articles/11084440-images-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"deep_research\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access to deep research, which researches multiple sources and produces a documented report.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI deep research",
+          "url": "https://help.openai.com/en/articles/10500283-deep-research-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"developer_mode\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of developer-mode features; the affected developer tools and enforcement are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"enable_conversation_classifier\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Enabling an internal conversation-classification mechanism; labels, processing, and usage are unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"enable_free_trial_seats\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of trial seat provisioning; eligibility and billing conditions are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"enable_message_feedback\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of feedback controls on messages; feedback storage or use is not established.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"enable_plugins\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Plugin enablement flag; precedence relative to the separate plugins flag is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"enable_value_survey_campaign\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of a survey campaign about product value; targeting and schedule are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"enhanced_citations\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "A citation presentation or generation enhancement; exact formatting behavior is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"file_library_auto_reference\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Automatic use or referencing of files from the Library; selection rules are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"file_library_auto_reference_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of automatic Library file referencing; effective access rules are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"flora_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of flora (unidentified feature); current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"gpt51_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of the GPT-5.1 rollout; current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"hermes\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opaque feature identifier; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"hermes_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of hermes (unidentified feature); current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"hippo_in_chat_allowed\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Allow marker for an unidentified hippo capability within chat.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"hive\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opaque feature identifier; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"hive_knowledge_retrieval\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Knowledge-retrieval subfeature of the unidentified hive feature; product mapping is unknown.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"include_user_identifier_in_survey_download\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Including user identifiers in a downloadable survey report; identifier format is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"legacy_models\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access to older models; this flag does not enumerate models or prove current model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"library_sharing_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of sharing Library content with others.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"library_sharing_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for a Library-sharing general-availability rollout; not necessarily an effective permission.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"library_sharing_management\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Ability to manage Library sharing configuration or permissions; distinct from consuming shared content.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"library_workspace_link_sharing\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Sharing Library content through links scoped to the workspace.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"m3m_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Rollout opt-out marker for opaque identifier m3m; the underlying product is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"m3m_workspace_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Workspace enable marker for opaque identifier m3m; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"orbit_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Enable marker for opaque identifier orbit; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"personal_access_tokens\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of personal access token functionality; this boolean is not itself a token.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"plugins\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of plugins; installation policy and individual app permissions can be separate.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"project_connector_scopes\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Connector access scoped to individual projects; scope semantics are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"project_group_chats\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Group-chat capability associated with projects; exact collaboration behavior is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"project_group_chats_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of project group chats; current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"project_sharing\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Ability to share projects with other people; eligible recipients and permission levels are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI projects and sharing",
+          "url": "https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"project_sharing_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of project sharing; current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI projects and sharing",
+          "url": "https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"salute\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opaque feature identifier; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"salute_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of salute (unidentified feature); current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"sites\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access to Sites, the site-creation feature; publishing permissions may be separate.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Sites workspace controls",
+          "url": "https://help.openai.com/en/articles/20001338-managing-chatgpt-sites-for-your-workspace",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"sites_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for the Sites general-availability rollout; not proof of effective access.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI Sites workspace controls",
+          "url": "https://help.openai.com/en/articles/20001338-managing-chatgpt-sites-for-your-workspace",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"skills\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of skills, reusable task instructions or resources; upload and sharing permissions may be separate.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI skills and workspace permissions",
+          "url": "https://help.openai.com/en/articles/20001066-skills-in-chatgpt/",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"skills_ga_opt_out\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opt-out marker for general-availability rollout of skills; current access, rollout completion, and precedence are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI skills and workspace permissions",
+          "url": "https://help.openai.com/en/articles/20001066-skills-in-chatgpt/",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"sunshine\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Opaque feature identifier; no product mapping has been verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"task_suggestions_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of suggested tasks in a client or product surface; generation rules are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"training_allowed\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether training use is allowed in some scope; this flag alone does not establish the full contractual data-use policy or actual training use.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"unified_container_internet_egress\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Outbound internet access for a unified execution container; which runtimes it covers is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"video_screen_sharing\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of video or screen-sharing input; supported clients are not established by this flag.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"wham_access\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Access flag for opaque identifier wham; no product mapping is verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"wham_local_access\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Local-access variant of opaque identifier wham; no product mapping is verified.",
+      "status": "Unknown",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"windows_computer_use\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "The source author reports that the installed Windows client checks this key for Computer Use. No equivalent Mac key has been verified; client version and code evidence are not published here.",
+      "status": "Confirmed",
+      "sources": [
+        {
+          "label": "Source-author report about the installed Windows client; not independently reproduced in this repository.",
+          "scope": "author_report"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_chat_history_limit\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether a workspace chat-history limit applies; it does not specify the limit or establish a retention duration.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_fedramp_banner\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Display of a workspace FedRAMP-related banner; not evidence of compliance certification.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_gpt_apps\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether workspace-created GPTs may use apps; third-party GPT rules may differ.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI GPT access controls",
+          "url": "https://help.openai.com/en/articles/8555535-managing-gpt-access-in-enterprise-and-edu-workspaces",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_gpt_custom_actions\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether workspace-created GPTs may use custom actions that call external services.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI GPT access controls",
+          "url": "https://help.openai.com/en/articles/8555535-managing-gpt-access-in-enterprise-and-edu-workspaces",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_plugin_publishing\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Ability to publish plugins for workspace use; publishing and installing are separate actions.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI app administration",
+          "url": "https://help.openai.com/en/articles/11509118-admin-controls-security-and-compliance-for-plugins-and-apps",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_policy\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Display or availability of workspace-provided AI policy guidance.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings\"][\"workspace_policy_work_home\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Display or application of workspace policy guidance in the Work home surface.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings_dict\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Container of structured feature configuration, including role-policy maps and Library settings.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings_dict\"][\"admin_preview_gpt_6_1_terra\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Structured preview role-policy map for the preview identified as gpt_6_1_terra; this name does not establish public model availability.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings_dict\"][\"admin_preview_gpt_6_1_terra\"][\"*\"]",
-      "type": "string"
-    },
-    {
-      "path": "$[\"beta_settings_dict\"][\"admin_preview_gpt_6_1_terra\"][\"role-workspace-member\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy state under a redacted role-map key. All role identifiers, including built-in role keys, collapse to this path; assignment and policy values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings_dict\"][\"admin_preview_library_sharing\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Structured preview role-policy map for Library sharing.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
-      "path": "$[\"beta_settings_dict\"][\"admin_preview_library_sharing\"][\"role-workspace-member\"]",
-      "type": "string"
+      "path": "$[\"beta_settings_dict\"][\"admin_preview_library_sharing\"][\"*\"]",
+      "type": "string",
+      "meaning": "Policy state under a redacted role-map key. All role identifiers, including built-in role keys, collapse to this path; assignment and policy values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings_dict\"][\"admin_preview_team_create\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Structured preview role-policy map for team creation.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings_dict\"][\"admin_preview_team_create\"][\"*\"]",
-      "type": "string"
-    },
-    {
-      "path": "$[\"beta_settings_dict\"][\"admin_preview_team_create\"][\"role-workspace-member\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy state under a redacted role-map key. All role identifiers, including built-in role keys, collapse to this path; assignment and policy values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"beta_settings_dict\"][\"library_sharing_admin_configuration\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Configuration recording administrator setup of Library sharing.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings_dict\"][\"library_sharing_admin_configuration\"][\"configured\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Marker for whether Library sharing has been configured. The observed JSON type is string, not boolean; parsing rules are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings_dict\"][\"library_sharing_control_mode\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Structured configuration selecting how Library sharing is governed.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings_dict\"][\"library_sharing_control_mode\"][\"mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Library-sharing governance selector; complete mode enum and precedence over the top-level field are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"beta_settings_str\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Container whose name suggests string-valued beta configuration; the empty object provides no member-type evidence.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"composer_predictions_launched\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Launch-state marker for prompt-composer predictions; which clients and prediction behavior it covers is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"conversation_ttl\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Conversation lifetime or retention-related setting; null establishes neither a duration nor unlimited retention. Units are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"custom_permission_inheritance_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether custom permissions may inherit another policy state; exact inheritance rules for this field are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"default_seat_type\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Seat category used by default for provisioning; null does not identify a seat type or its representation.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"desktop_app_beta_policy\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Desktop beta-client access policy; accepted policy values and platform scope are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"disable_account_switching\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Restriction on switching accounts; precedence relative to enable_account_switching is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"enable_account_switching\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of account switching; precedence relative to disable_account_switching is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"file_library_auto_reference_admin_control_retired\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Retirement state of an admin control for automatic Library file referencing; not necessarily the state of file referencing itself.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"library_sharing_control_mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Selector for how Library sharing is governed; precedence over similarly named nested configuration is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"member_profile_activity_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of activity information within member profiles; which activity is exposed is unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"member_profiles_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of member profiles in workspace surfaces.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"member_profiles_sharing\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Audience or sharing scope for member profile information; accepted values are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"model_permission_preferences\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Map linking model-related preference identifiers to permission identifiers; how the preferences are evaluated is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"model_permission_preferences\"][\"ultra-fast-mode\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Permission-identifier mapping for an ultra-fast mode preference; supported models and enforcement are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"orbit_rollout_eligible\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Rollout eligibility for opaque identifier orbit; eligibility alone would not prove access.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"orbit_uses_workspace_setting\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether opaque identifier orbit follows a workspace setting; the referenced setting is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"owner_setup_join_preference_confirmed\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether an owner has confirmed a joining preference during setup; does not identify the choice.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"permissions\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers returned for this response. Whether they represent effective caller permissions, workspace eligibility, or another scope is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"permissions\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "An individual permission identifier string. Naming conventions may encode a resource, action, model, or feature; actual permission values and their order are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"plugin_incentive_campaigns\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Collection of plugin incentive campaigns; the empty array provides no evidence of campaign item structure.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"plugin_incentives_ui_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Visibility or availability of a plugin-incentives user interface.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"public_display_name\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Public or discoverable workspace display name; null does not establish that discovery is disabled.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Collection of role descriptions and related permission/assignment information; inclusion does not establish a particular member-role assignment.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][]",
-      "type": "object"
+      "type": "object",
+      "meaning": "One role summary object, not evidence that a particular individual holds that role.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"assignment_sources\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Sources or principals associated with assignment of this role; precise membership semantics are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"assignment_sources\"][]",
-      "type": "object"
+      "type": "object",
+      "meaning": "One assignment-source record; actual membership and principal values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"assignment_sources\"][][\"principal_id\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Identifier of a principal associated with the assignment source; the actual identifier is omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"assignment_sources\"][][\"principal_type\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Category of the assignment-source principal; the full category set is unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"id\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Identifier of the summarized role; may encode workspace information, so actual values are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"metadata\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Additional role metadata; the observed null reveals no metadata structure.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"name\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Human-readable role label; actual role names are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"permissions\"]",
-      "type": "array"
+      "type": "array",
+      "meaning": "Permission identifiers associated with this role summary; not proof of effective access after other policy checks.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"role_summaries\"][][\"permissions\"][]",
-      "type": "string"
+      "type": "string",
+      "meaning": "One permission identifier associated with this role; actual values and ordering are omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI role-based access control",
+          "url": "https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"search_restrictions\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Selector for search restrictions; search surfaces and the complete enum are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI web search",
+          "url": "https://help.openai.com/en/articles/9237897-searching-the-web-with-chatgpt",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"seat_type_credit_limits\"]",
-      "type": "null"
+      "type": "null",
+      "meaning": "Credit-limit configuration associated with seat types; null reveals no numeric unit or nested structure.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"settings\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "General settings container; no child keys were present in the observed object.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"share_settings\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Container for separate chat-sharing and GPT-sharing policies.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"share_settings\"][\"chat_share_setting\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy selecting allowed chat-sharing audiences; complete enum and enforcement are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"share_settings\"][\"gpt_share_setting\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Policy selecting allowed GPT-sharing audiences; complete enum and enforcement are unverified.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI GPT access controls",
+          "url": "https://help.openai.com/en/articles/8555535-managing-gpt-access-in-enterprise-and-edu-workspaces",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"support_workspace_discovery\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether workspace discovery is supported or available, distinct from the configured discoverability flag.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"unified_workspace_name\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Name unification behavior across workspace surfaces; scope and migration semantics are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"usage_limit_increase_request\"]",
-      "type": "object"
+      "type": "object",
+      "meaning": "Configuration for instructions and a destination used to request a usage-limit increase; it is not a record that a request was sent.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"usage_limit_increase_request\"][\"instructions\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Text shown to explain how to request a usage-limit increase; actual organization instructions are omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"usage_limit_increase_request\"][\"kind\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Discriminator selecting the usage-limit request workflow; the full set of kinds is unknown.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"usage_limit_increase_request\"][\"request_url\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Destination URL for a usage-limit increase request; actual organization URL is omitted.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"use_workspace_name_for_discovery\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether workspace discovery displays the workspace name rather than a separate display name.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"workspace_banner_available\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of a workspace banner; does not establish whether a banner is configured or visible.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"workspace_discoverable\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Whether eligible people can discover the workspace when joining; domain/eligibility rules are separate.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace membership and discovery",
+          "url": "https://help.openai.com/en/articles/8542216-managing-members-seat-types-and-roles-in-chatgpt-business",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"workspace_id\"]",
-      "type": "string"
+      "type": "string",
+      "meaning": "Identifier of the workspace associated with the response; the actual identifier is omitted.",
+      "status": "Inferred from name",
+      "sources": [
+        {
+          "label": "OpenAI workspace controls",
+          "url": "https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise",
+          "scope": "product_context"
+        }
+      ]
     },
     {
       "path": "$[\"workspace_referrals_enabled\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Availability of workspace referrals or referral actions; program rules are unverified.",
+      "status": "Inferred from name",
+      "sources": []
     },
     {
       "path": "$[\"workspace_referrals_enabled_visible\"]",
-      "type": "boolean"
+      "type": "boolean",
+      "meaning": "Visibility of the control or UI for workspace referrals, distinct from enabling referrals.",
+      "status": "Inferred from name",
+      "sources": []
     }
   ]
 }

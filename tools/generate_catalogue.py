@@ -1,27 +1,18 @@
 #!/usr/bin/env python3
-"""Generate a value-free key/type catalogue from a local workspace settings JSON.
-
-Uses only the Python standard library. Does not transmit or copy the input values.
-"""
+"""Generate reviewed, value-free documentation from an external local JSON file."""
 
 from __future__ import annotations
 
 import argparse
+from datetime import date
 import json
-import re
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DATE = "2026-11-19"
-ROLE_KEY = re.compile(r"^role_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}~[0-9a-f]{20,}$", re.IGNORECASE)
-
-SOURCES = {
-    "workspace": "[OpenAI workspace settings overview](https://help.openai.com/en/articles/8411955-managing-workspace-settings-in-chatgpt-enterprise)",
-    "rbac": "[OpenAI RBAC guide](https://help.openai.com/en/articles/11750701-managing-feature-access-with-role-based-access-control-in-chatgpt)",
-    "business": "[OpenAI Business roles and discovery](https://help.openai.com/en/articles/8542216-managing-workspaces-people-and-access-in-chatgpt-business)",
-}
+REGISTRY = json.loads((ROOT / "tools" / "field_notes.json").read_text(encoding="utf-8"))
+NOTES = REGISTRY["entries"]
+DYNAMIC_MAPS = set(REGISTRY["dynamic_maps"])
 
 
 def kind(value: Any) -> str:
@@ -29,7 +20,7 @@ def kind(value: Any) -> str:
         return "null"
     if isinstance(value, bool):
         return "boolean"
-    if isinstance(value, int) and not isinstance(value, bool):
+    if isinstance(value, int):
         return "integer"
     if isinstance(value, float):
         return "number"
@@ -39,37 +30,39 @@ def kind(value: Any) -> str:
         return "array"
     if isinstance(value, dict):
         return "object"
-    return "unknown"
+    raise ValueError("Unsupported JSON value")
 
 
-def quote_key(key: str) -> str:
-    return json.dumps(key, ensure_ascii=False)
+def child_path(parent: str, key: str) -> str:
+    # All members of these maps are identifiers, regardless of their spelling.
+    safe_key = "*" if parent in DYNAMIC_MAPS else key
+    path = parent + "[" + json.dumps(safe_key, ensure_ascii=False) + "]"
+    if path not in NOTES:
+        # Never echo unreviewed keys, even in error messages.
+        raise ValueError("Unreviewed object path: no output written. Review new field names privately and update tools/field_notes.json before regenerating.")
+    return path
 
 
-def normalized_key(key: str) -> str:
-    return "*" if ROLE_KEY.match(key) else key
-
-
-def walk(value: Any, path: str = "$", top: str | None = None) -> list[dict[str, str]]:
-    rows = [{"path": path, "type": kind(value), "section": top or "(root)"}]
+def walk(value: Any, path: str = "$") -> list[dict[str, str]]:
+    if path not in NOTES:
+        raise ValueError("Unreviewed array item path: no output written.")
+    rows = [{"path": path, "type": kind(value)}]
     if isinstance(value, dict):
         for key, child in value.items():
-            display_key = normalized_key(key)
-            section = top or display_key
-            rows.extend(walk(child, f"{path}[{quote_key(display_key)}]", section))
+            rows.extend(walk(child, child_path(path, key)))
     elif isinstance(value, list):
         for child in value:
-            rows.extend(walk(child, f"{path}[]", top))
+            rows.extend(walk(child, path + "[]"))
     return rows
 
 
-def illustrative(value: Any) -> Any:
-    """Replace values with examples; use explicit strings for null/empty values."""
+def illustrative(value: Any, path: str = "$") -> Any:
+    """Replace every value; preserve all distinct observed array item shapes."""
     if value is None:
         return "<illustrative null placeholder>"
     if isinstance(value, bool):
         return True
-    if isinstance(value, int) and not isinstance(value, bool):
+    if isinstance(value, int):
         return 1
     if isinstance(value, float):
         return 1.0
@@ -78,106 +71,127 @@ def illustrative(value: Any) -> Any:
     if isinstance(value, list):
         if not value:
             return "<illustrative empty-array placeholder>"
-        # One representative item per array keeps the example compact.
-        return [illustrative(value[0])]
+        unique = {}
+        for item in value:
+            example = illustrative(item, path + "[]")
+            unique[json.dumps(example, sort_keys=True)] = example
+        return [unique[key] for key in sorted(unique)]
     if isinstance(value, dict):
         if not value:
             return "<illustrative empty-object placeholder>"
         out = {}
         for key, child in value.items():
-            out[normalized_key(key)] = illustrative(child)
+            target = child_path(path, key)
+            safe_key = "*" if path in DYNAMIC_MAPS else key
+            example = illustrative(child, target)
+            if safe_key in out and out[safe_key] != example:
+                raise ValueError("Dynamic map has incompatible example shapes; no output written. Review privately before extending the example format.")
+            out[safe_key] = example
         return out
-    return "<illustrative>"
+    raise ValueError("Unsupported JSON value")
+
+
+def section(path: str) -> str:
+    return "(root)" if path == "$" else json.JSONDecoder().raw_decode(path[2:])[0]
 
 
 def escape_cell(text: str) -> str:
     return text.replace("|", "\\|").replace("\n", " ")
 
 
-def meaning(row: dict[str, str]) -> tuple[str, str, str]:
-    path = row["path"]
-    context_path = path[:-2] if path.endswith("[]") else path
-    leaf = context_path.rsplit("[", 1)[-1].rstrip("]")
-    try:
-        name = json.loads(leaf) if leaf != "" else "array item"
-    except json.JSONDecodeError:
-        name = "array item"
-    name = str(name)
-    low = name.lower()
-    if path == "$":
-        return "Top-level JSON response object.", "Confirmed", SOURCES["workspace"]
-    if name == "permissions" or name == "role_summaries" or "assignment_sources" in path:
-        return "Permission or role-related data; the response shape alone does not define the exact authorization semantics.", "Confirmed", SOURCES["rbac"]
-    if name in {"workspace_id", "workspace_discoverable", "public_display_name", "use_workspace_name_for_discovery", "auto_accept_requests"}:
-        return "Workspace identity or discovery-related field, based on the documented workspace controls.", "Confirmed", SOURCES["business"]
-    if name == "config.toml":
-        return "Local Codex configuration file reference; unrelated to this server response field.", "Confirmed", "[Codex configuration reference](https://developers.openai.com/codex/config-reference/)"
-    if name in {"settings", "beta_settings", "beta_settings_str", "beta_settings_dict", "desktop_app_beta_policy", "available_admin_preview_features", "admin_preview_launch_settings", "admin_preview_launch_defaults", "admin_preview_matching", "model_permission_preferences"}:
-        return f"Container or policy field named `{name}`; precise backend semantics are not documented here.", "Inferred from name", "—"
-    if name in {"id", "name", "metadata", "principal_id", "principal_type", "revision", "mode", "configured", "kind", "instructions", "request_url", "gpt_share_setting", "chat_share_setting", "conversation_ttl", "access_token_max_ttl", "allowed_custom_actions_domains", "allowed_web_search_domains", "seat_type_credit_limits", "access_request", "default_seat_type", "plugin_incentive_campaigns", "public_display_name"}:
-        return "The field name indicates the general data concept; its backend-specific effect is not established by this response.", "Inferred from name", "—"
-    if "windows_computer_use" == name:
-        return "Feature-availability flag checked by the installed Windows client, as observed by the source author; no Mac equivalent is verified.", "Confirmed", "—"
-    if any(token in low for token in ("access", "enable", "allow", "disable", "sharing", "share", "plugin", "model", "connector", "codex", "workspace", "admin_preview", "retired", "launched", "eligible", "visible", "opt_out", "policy", "training", "history", "feedback", "suggestion", "trial", "scim", "switching", "referral", "profile", "search", "invite", "approval", "join", "seat", "incentive", "banner", "orbit", "work_mode", "local_enabled")):
-        return f"Name suggests a {name.replace('_', ' ')} setting or feature flag; no specific server behavior is verified.", "Inferred from name", "—"
-    return "No reliable meaning established from the field name or cited documentation.", "Unknown", "—"
+def sources_text(note: dict) -> str:
+    items = []
+    for source in note["sources"]:
+        if "url" in source:
+            items.append(f"[{source['label']}]({source['url']}) (product context; key mapping unverified)")
+        else:
+            items.append(source["label"])
+    return "; ".join(items) or "No supporting public source located."
 
 
 def render_reference(rows: list[dict[str, str]], observed_on: str) -> str:
-    by_section: dict[str, list[dict[str, str]]] = {}
-    for row in rows:
-        if row["path"] == "$":
-            continue
-        by_section.setdefault(row["section"], []).append(row)
+    sections = sorted({section(row["path"]) for row in rows if row["path"] != "$"})
     lines = [
-        "# Observed key reference",
-        "",
-        f"One response observed on {observed_on}. This is an unofficial snapshot, not a complete schema or a statement of defaults. The original values are intentionally omitted.",
-        "",
-        "`[]` denotes a representative array item. `*` denotes a redacted role-like map key. `null` and empty collections reveal no underlying schema type beyond the observed JSON value.",
-        "",
+        "# Observed key reference", "",
+        f"One response observed on {observed_on}; no observed values are published. See [scope and evidence rules](README.md).", "",
+        "`[]` represents observed array item shapes. `*` replaces every identifier in reviewed role maps, including built-in role keys. Multiple identifiers and repeated items collapse to distinct path/type pairs. Null and empty collections establish no hidden schema types.", "",
+        "Official links provide product context, not confirmation of an internal JSON key. All backend mappings below remain inferred or unknown except the explicitly attributed Windows client observation supplied by the source author.", "",
+        "## Contents", "",
     ]
-    for section, section_rows in by_section.items():
-        lines += [f"## `{section}`", "", "| Full JSON path | Observed type | Meaning | Status | Source |", "|---|---|---|---|---|"]
-        for row in section_rows:
-            desc, status, source = meaning(row)
-            lines.append("| " + " | ".join(escape_cell(x) for x in (f"`{row['path']}`", f"`{row['type']}`", desc, status, source)) + " |")
+    lines += [f"- [{name}](#{name})" for name in sections]
+    lines += [""]
+    for name in sections:
+        lines += [f"## {name}", "", "| Full JSON path | Observed type | Meaning | Status | Evidence / context |", "|---|---|---|---|---|"]
+        for row in rows:
+            if section(row["path"]) != name:
+                continue
+            note = NOTES[row["path"]]
+            cells = [f"`{row['path']}`", f"`{row['type']}`", note["meaning"], note["status"], sources_text(note)]
+            lines.append("| " + " | ".join(map(escape_cell, cells)) + " |")
         lines.append("")
     return "\n".join(lines)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("input", type=Path, help="local JSON response (kept outside this repository)")
-    parser.add_argument("--observed-on", default=DEFAULT_DATE, help="observation date in YYYY-MM-DD form")
-    args = parser.parse_args()
-
-    with args.input.open("r", encoding="utf-8") as handle:
-        data = json.load(handle)
+def generate(data: Any, observed_on: str) -> dict[str, str]:
+    try:
+        if date.fromisoformat(observed_on).isoformat() != observed_on:
+            raise ValueError("Noncanonical date")
+    except ValueError:
+        raise ValueError("Invalid observation date; use YYYY-MM-DD. No output written.") from None
     if not isinstance(data, dict):
-        raise SystemExit("Expected a JSON object at the response root")
-
+        raise ValueError("Expected a JSON object at the response root")
     raw_rows = walk(data)
-    # Arrays may contain heterogeneous objects. Preserve every distinct observed
-    # path/type pair while avoiding duplicate entries for repeated items.
-    rows = list({(r["path"], r["type"], r["section"]): r for r in raw_rows}.values())
-    rows.sort(key=lambda r: (r["section"], r["path"], r["type"]))
+    rows = [dict(path=p, type=t) for p, t in sorted({(r["path"], r["type"]) for r in raw_rows})]
     catalogue = {
-        "title": "Unofficial ChatGPT workspace settings response key/type catalogue",
-        "observed_on": args.observed_on,
+        "title": "Unofficial ChatGPT workspace settings response catalogue",
+        "observed_on": observed_on,
         "source_endpoint": "GET https://chatgpt.com/backend-api/accounts/{account_id}/settings",
-        "scope_note": "One observed response only; no observed values are included. Null and empty collections do not establish hidden types.",
-        "path_convention": "JSONPath-like bracket notation; [] means an array item; * normalizes role-like object keys to prevent identifier disclosure.",
-        "entries": [{"path": r["path"], "type": r["type"]} for r in rows],
+        "scope_note": "One response only; no observed values. Null and empty collections do not establish hidden types.",
+        "path_convention": "JSONPath-like brackets; [] aggregates observed array item shapes; * redacts every key in reviewed dynamic role maps.",
+        "entries": [dict(row, **NOTES[row["path"]]) for row in rows],
     }
-    (ROOT / "catalogue.json").write_text(json.dumps(catalogue, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    (ROOT / "REFERENCE.md").write_text(render_reference(rows, args.observed_on), encoding="utf-8")
     example = {
-        "notice": "ILLUSTRATIVE EXAMPLE ONLY. No observed values are reproduced. Null and empty collections use placeholder strings; some example values therefore do not match the catalogue type. Role-ID map keys are redacted.",
+        "notice": "ILLUSTRATIVE ONLY. Scalar values are synthetic and may coincidentally match a source value. Nulls and empty collections use explicit placeholder strings; consult catalogue.json for observed types. Dynamic role keys and duplicate item shapes are collapsed.",
         "response": illustrative(data),
     }
-    (ROOT / "example-response.json").write_text(json.dumps(example, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Wrote {len(rows)} path/type entries to catalogue.json and REFERENCE.md; wrote example-response.json.")
+    # Build everything before writing so rejected input cannot partially refresh outputs.
+    return {
+        "catalogue.json": json.dumps(catalogue, indent=2, ensure_ascii=False) + "\n",
+        "REFERENCE.md": render_reference(rows, observed_on),
+        "example-response.json": json.dumps(example, indent=2, ensure_ascii=False) + "\n",
+    }
+
+
+def unique_object(pairs: list[tuple[str, Any]]) -> dict:
+    obj = {}
+    for key, value in pairs:
+        if key in obj:
+            raise ValueError("Duplicate JSON object key; no output written.")
+        obj[key] = value
+    return obj
+
+
+def reject_constant(_: str) -> None:
+    raise ValueError("Nonstandard JSON numeric constant; no output written.")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("input", type=Path, help="JSON response outside this repository")
+    parser.add_argument("--observed-on", required=True, help="observation date (YYYY-MM-DD)")
+    args = parser.parse_args()
+    try:
+        if args.input.resolve().is_relative_to(ROOT):
+            raise ValueError("Keep local input JSON outside the repository; no output written.")
+        data = json.loads(args.input.read_text(encoding="utf-8-sig"), object_pairs_hook=unique_object, parse_constant=reject_constant)
+        outputs = generate(data, args.observed_on)
+    except (OSError, ValueError) as error:
+        # OS/decoder diagnostics may contain private paths or input snippets.
+        message = str(error) if type(error) is ValueError else "Could not read valid local JSON; no output written."
+        raise SystemExit(message) from None
+    for name, content in outputs.items():
+        (ROOT / name).write_text(content, encoding="utf-8")
+    print("Generated catalogue, reference, and illustrative example from reviewed paths.")
 
 
 if __name__ == "__main__":
